@@ -54,17 +54,12 @@ public class MainActivity extends Activity
         mSensorManager.registerListener(new SensorEventListener() {
           @Override
           public void onSensorChanged(final SensorEvent event) {
-            runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-        		    float x = event.values[0];
-        		    float y = event.values[1];
-        		    float z = event.values[2];
-        		    float g = (float) sqrt(x*x + y*y + z*z);
+    		    float x = event.values[0];
+    		    float y = event.values[1];
+    		    float z = event.values[2];
+    		    float g = (float) sqrt(x*x + y*y + z*z);
 
-                tvSensor.setText(String.format("Sensor %d: %f m/s^2", j, g));
-              }
-            });
+            tvSensor.setText(String.format("Sensor %d: %f m/s^2", j, g));
           }
 
           @Override
