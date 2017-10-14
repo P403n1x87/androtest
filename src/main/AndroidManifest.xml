@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.p403n1x87.androtest">
+  package="com.p403n1x87.androtest">
 
-    <application
-      android:label="AndroTest"
-      android:theme="@android:style/Theme.Material">
+  <uses-sdk
+    android:minSdkVersion="21"
+    android:targetSdkVersion="23" />
 
-        <activity android:name="MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+  <application
+    android:allowBackup="false"
 
-    </application>
+    android:icon="@drawable/logo"
+    android:label="AndroTest"
+    android:theme="@android:style/Theme.Material">
+
+    <activity android:name="MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+  </application>
 
 </manifest>

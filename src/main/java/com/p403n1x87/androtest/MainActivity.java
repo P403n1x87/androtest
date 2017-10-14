@@ -2,7 +2,6 @@ package com.p403n1x87.androtest;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -12,6 +11,7 @@ import android.hardware.SensorManager;
 
 import android.view.ViewGroup.LayoutParams;
 
+import android.text.Html;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 
@@ -28,12 +28,12 @@ public class MainActivity extends Activity
   private TextView      text       = null;
   private LinearLayout  layoutMain = null;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
     // UI
-		setContentView(R.layout.main_layout);
+    setContentView(R.layout.main_layout);
     if (text == null)       text       = (TextView)     findViewById(R.id.text);
     if (layoutMain == null) layoutMain = (LinearLayout) findViewById(R.id.layout_main);
 
@@ -42,7 +42,7 @@ public class MainActivity extends Activity
     if (mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY) != null){
       List<Sensor> gravSensors = mSensorManager.getSensorList(Sensor.TYPE_GRAVITY);
       int nSensors = gravSensors.size();
-      text.setText("Detected gravity sensors: " + Integer.toString(nSensors));
+      text.setText(getString(R.string.sensors_no, nSensors));
 
       for (int i = 0; i < nSensors; i++) {
         final TextView tvSensor = new TextView(this);
@@ -59,7 +59,7 @@ public class MainActivity extends Activity
     		    float z = event.values[2];
     		    float g = (float) sqrt(x*x + y*y + z*z);
 
-            tvSensor.setText(String.format("Sensor %d: %f m/s^2", j, g));
+            tvSensor.setText(Html.fromHtml(getString(R.string.sensor_val, j, g)));
           }
 
           @Override
@@ -70,8 +70,8 @@ public class MainActivity extends Activity
       }
     }
     else {
-      text.setText("We DO NOT have gravity! :(");
+      text.setText(R.string.no_sensors);
     }
-	}
+  }
 
 }
